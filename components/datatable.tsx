@@ -28,7 +28,7 @@ const DataTable = <R,>({ list, rowId, headers, footer }: DataTableProps<R>) => {
     <Table>
       {/*<TableCaption>Details de la facture</TableCaption>*/}
       <TableHeader>
-        <TableRow>
+        <TableRow className="bg-black">
           {headers.map((header) => (
             <TableHead
               key={header?.key}
