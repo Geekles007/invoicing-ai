@@ -7,9 +7,7 @@ import { headers, invoices } from "@/lib/constants";
 import { TableCell, TableFooter, TableRow } from "@/components/ui/table";
 import NumberFlow from "@number-flow/react";
 
-type InvoiceProps = {};
-
-const Invoice = ({}: InvoiceProps) => {
+const Invoice = () => {
   const total = invoices.reduce((sum, item) => {
     return sum + (typeof item.totalAmount === "number" ? item.totalAmount : 0);
   }, 0);
