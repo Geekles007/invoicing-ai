@@ -30,8 +30,8 @@ export const invoices = [
     invoice: "INV001",
     description: "Conception et développement du site web",
     quantity: 1,
-    unitPrice: 700000,
-    totalAmount: 700000,
+    unitPrice: 850000,
+    totalAmount: 850000,
   },
   {
     invoice: "INV002",
