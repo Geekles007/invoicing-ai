@@ -1,19 +1,24 @@
+import { headers, invoices } from "@/lib/constants";
 import Image from "next/image";
 import KeyValueViewer from "@/components/KeyValueViewer";
 import CompanyInfos from "@/components/CompanyInfos";
 import Link from "next/link";
 import DataTable from "@/components/datatable";
-import { headers, invoices } from "@/lib/constants";
 import { TableCell, TableFooter, TableRow } from "@/components/ui/table";
 import NumberFlow from "@number-flow/react";
+import { ProformaData } from "@/types/ProformaData";
 
-const Invoice = () => {
+type PreviewProps = {
+  data?: ProformaData;
+};
+
+const Preview = ({ data }: PreviewProps) => {
   const total = invoices.reduce((sum, item) => {
     return sum + (typeof item.totalAmount === "number" ? item.totalAmount : 0);
   }, 0);
 
   return (
-    <div className="w-screen">
+    <div className="">
       <div className="max-w-screen-md mx-auto h-screen bg-white relative">
         <div className="header h-24 relative pl-4 flex items-center justify-between">
           <div className="bg-black p-2 w-14 h-full flex items-end justify-center pb-4">
@@ -117,4 +122,4 @@ const Invoice = () => {
   );
 };
 
-export default Invoice;
+export default Preview;

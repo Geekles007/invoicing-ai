@@ -36,7 +36,7 @@ const CompanyInfos = ({
             </span>
             <strong
               className={cn(
-                "font-bold text-black text-xs",
+                "font-bold text-black text-sm",
                 orientation === "right" ? "text-right" : "",
               )}
             >
