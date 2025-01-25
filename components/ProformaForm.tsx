@@ -8,7 +8,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { createProformaDataSchema, Item } from "@/types/ProformaData";
+import { createProformaDataSchema } from "@/types/ProformaData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -17,18 +17,24 @@ import { useState } from "react";
 import SelectDate from "@/components/SelectDate";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Upload from "./upload";
-import { Button } from "@/components/ui/button";
+import ItemForm from "@/components/ItemForm";
+import { Textarea } from "@/components/ui/textarea";
 
 const FormSchema = createProformaDataSchema;
 
 const ProformaForm = () => {
   const [date, setDate] = useState<Date>(new Date());
   const [logoBlob, setLogoBlob] = useState<Blob | null>(null);
-  const [items, setItems] = useState<Item[]>([]);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {},
   });
+  // const { setFormData } = useAppStore(
+  //   (state) => ({
+  //     setFormData: state?.setFormData,
+  //   }),
+  //   shallow,
+  // );
 
   const onSubmit = (data: z.infer<typeof FormSchema>) => {
     console.log(data);
@@ -218,27 +224,38 @@ const ProformaForm = () => {
             </div>
           </CardContent>
         </Card>
-        <Card className={"mt-8"}>
+        <ItemForm />
+        <Card className={"mt-4"}>
           <CardHeader>
-            <CardTitle>Contenu</CardTitle>
+            <CardTitle>Bas de page</CardTitle>
           </CardHeader>
           <CardContent>
-            <Button className={"mb-4"}>Ajouter</Button>
-            <div className="grid grid-cols-3 gap-4">
-              <FormField
-                control={form.control}
-                name="item"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Email" type="item" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            <FormField
+              control={form.control}
+              name="conditions"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Conditions</FormLabel>
+                  <FormControl>
+                    <Textarea placeholder="Conditions" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="slogan"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Slogan</FormLabel>
+                  <FormControl>
+                    <Input type={"text"} placeholder="Slogan" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </CardContent>
         </Card>
       </form>
